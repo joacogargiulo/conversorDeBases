@@ -96,6 +96,16 @@ btnAgregarBase.addEventListener("click", () => {
     let base = prompt("Ingrese una base entre 2 y 36")
     if (base >= 2 && base <= 36) {
         let nuevoConversor = new Conversor("input_" + base, base, "Base " + base);
+        if (base == 10) {
+            nuevoConversor.texto = "Decimal"
+        } else if (base == 16) {
+            nuevoConversor.texto = "Hexadecimal"
+        } else if (base == 8){
+        nuevoConversor.texto = "Octal"
+        } else if (base == 2){
+        nuevoConversor.texto = "Binario"
+        }
+        
         let agregandoConversores = `
             <div id="${nuevoConversor.id}_container">
                 <p>
