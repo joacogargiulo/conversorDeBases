@@ -20,26 +20,85 @@ let conversorHex = new Conversor("input_hexadecimal","16","Hexadecimal")
 let conversorBin = new Conversor("input_binario","2","Binario")
 let conversorOct = new Conversor("input_octal","8","Octal")
 
-conversores.push(conversorDec,conversorBin,conversorHex,conversorOct)
+conversores.push(conversorDec,conversorBin,conversorOct,conversorHex)
 
 
-function iniciar() {
-    conversores.forEach(conversor => {
-        agregandoConversores = `
-            <div id="${conversor.id}_container">
-                <p>
-                    <label for=${conversor.id}>${conversor.texto}</label>
-                    <button class="btn_eliminar fa-solid fa-trash-can" data-input-id=${conversor.id} id="btn_eliminar_${conversor.id}" ></button>
-                    <input type="text" id=${conversor.id} name=${conversor.name} min="0" value= "0" />
-                </p>
-            </div>
-            `
-        contenedorConversores.innerHTML += agregandoConversores 
+function mostrarConversor(conversor) {
+    agregandoConversores = `
+        <div id="${conversor.id}_container">
+            <label for=${conversor.id}>${conversor.texto}</label>
+            <button class="btn_eliminar fa-solid fa-trash-can" data-input-id=${conversor.id} id="btn_eliminar_${conversor.id}" ></button>
+            <input type="text" id=${conversor.id} name=${conversor.name} min="0" placeholder= "0" />
+        </div>
+        `
+    contenedorConversores.innerHTML += agregandoConversores 
 
-        let inputNue = document.getElementById(conversor.id)
-        inputs.push(inputNue)        
+    let inputNue = document.getElementById(conversor.id)
+    inputs.push(inputNue)        
+    agregarListeners()
+}
+
+//Evita que se rompa el codigo cuando se vacia un input
+function revisar() {
+    inputs.forEach(conversor => {
+        let input = document.getElementById(conversor.id)
+        if (input.value == "") {
+            input.value = ""
+        }
     })
+}
 
+function convertir(base, input) {
+    const num = document.getElementById(input).value
+    const numDec = parseInt(num, parseInt(base))
+
+
+    inputs.forEach(conversor => {
+        let input = document.getElementById(conversor.id)
+        if (!isNaN(numDec)) {
+            input.value = numDec.toString(parseInt(conversor.name)).toUpperCase()
+        } else {
+            input.value = ""
+        }
+    });
+
+}
+
+
+btnAgregarBase.addEventListener("click", () => {
+    swal({
+        icon: "info",
+        title: "Nuevo conversor",
+        text: "Ingrese una base entre 2 y 36", 
+        content: "input",
+        buttons: true,
+    })
+    .then((base) => {
+        if (base >= 2 && base <= 36) {
+            let nuevoConversor = new Conversor("input_" + base, base, "Base " + base);
+            if (base == 10) {
+                nuevoConversor.texto = "Decimal"
+            } else if (base == 16) {
+                nuevoConversor.texto = "Hexadecimal"
+            } else if (base == 8){
+                nuevoConversor.texto = "Octal"
+            } else if (base == 2){
+                nuevoConversor.texto = "Binario"
+            }
+            
+            mostrarConversor(nuevoConversor)        
+        } else  if (base !== null) {
+            swal({
+                title: "Error",
+                text: "Ingrese una base valida",
+                icon: "error",
+                dangerMode: true,
+            })
+        }
+    })
+})
+
+function agregarListeners() {
     contenedorConversores.addEventListener("input", (event) => {
         revisar()
         const target = event.target
@@ -53,109 +112,7 @@ function iniciar() {
             eliminarInput(inputId);
         }
     })
-
-    contenedorConversores.addEventListener("mouseover", (event) => {
-        const target = event.target;
-        if (target.classList.contains("btn_eliminar")) {
-            target.className = "btn_eliminar fa-solid fa-trash-can fa-beat"
-        }
-    })
-
-    contenedorConversores.addEventListener("mouseout", (event) => {
-        const target = event.target;
-        if (target.classList.contains("fa-beat")) {
-            target.className = "btn_eliminar fa-solid fa-trash-can"
-        }
-    })
 }
-
-//Evita que se rompa el codigo cuando se vacia un input
-function revisar() {
-    inputs.forEach(conversor => {
-        let input = document.getElementById(conversor.id)
-        if (input.value == "") {
-            input.value = 0
-        }
-    })
-}
-
-function convertir(base, input) {
-    const num = document.getElementById(input).value
-    const numDec = parseInt(num, parseInt(base))
-
-
-    inputs.forEach(conversor => {
-        let input = document.getElementById(conversor.id)
-        input.value = numDec.toString(parseInt(conversor.name)).toUpperCase()
-    });
-
-}
-
-
-btnAgregarBase.addEventListener("click", () => {
-    let base = prompt("Ingrese una base entre 2 y 36")
-    if (base >= 2 && base <= 36) {
-        let nuevoConversor = new Conversor("input_" + base, base, "Base " + base);
-        if (base == 10) {
-            nuevoConversor.texto = "Decimal"
-        } else if (base == 16) {
-            nuevoConversor.texto = "Hexadecimal"
-        } else if (base == 8){
-        nuevoConversor.texto = "Octal"
-        } else if (base == 2){
-        nuevoConversor.texto = "Binario"
-        }
-        
-        let agregandoConversores = `
-            <div id="${nuevoConversor.id}_container">
-                <p>
-                    <label for= ${nuevoConversor.id} > ${nuevoConversor.texto} </label>
-                    <button class="btn_eliminar fa-solid fa-trash-can" data-input-id=${nuevoConversor.id}></button>
-                    <input type="text" id= ${nuevoConversor.id}  name=${nuevoConversor.name} min="0" value= "0" />
-                </p>
-            </div>
-                `
-        contenedorConversoresOpcionales.innerHTML += agregandoConversores
-
-        let inputNue = document.getElementById(nuevoConversor.id)
-        
-        inputs.push(inputNue)
-
-        contenedorConversoresOpcionales.addEventListener("input", (event) => {
-            revisar()
-            const target = event.target
-            convertir(target.name, target.id)
-        })
-
-        contenedorConversoresOpcionales.addEventListener("click", (event) => {
-            const target = event.target;
-            if (target.classList.contains("btn_eliminar")) {
-                const inputId = target.getAttribute("data-input-id");
-                eliminarInput(inputId);
-            }
-        })
-
-        contenedorConversoresOpcionales.addEventListener("mouseover", (event) => {
-            const target = event.target;
-            if (target.classList.contains("btn_eliminar")) {
-                target.className = "btn_eliminar fa-solid fa-trash-can fa-beat"
-            }
-        })
-    
-        contenedorConversoresOpcionales.addEventListener("mouseout", (event) => {
-            const target = event.target;
-            if (target.classList.contains("fa-beat")) {
-                target.className = "btn_eliminar fa-solid fa-trash-can"
-            }
-        })
-
-        conversores.push(nuevoConversor)
-
-
-    } else {
-        alert("Ingrese un numero valido")
-    }
-})
 
 function eliminarInput(inputId) {
     const inputContainer = document.getElementById(`${inputId}_container`);
@@ -165,4 +122,8 @@ function eliminarInput(inputId) {
     conversores = conversores.filter((conversor) => conversor.id !== inputId);
 }
 
-window.addEventListener("load",iniciar)
+window.addEventListener("load", () => {
+    conversores.forEach(conversor => {
+        mostrarConversor(conversor)
+    });
+})

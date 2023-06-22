@@ -19,6 +19,7 @@ h1 {
     grid-template-columns: 1fr;
     grid-gap: 10px;
     margin-bottom: 20px;
+    width: 40%
 }
 
 p {
@@ -27,6 +28,7 @@ p {
 
 label {
     font-weight: bold;
+    width: 100%;
 }
 
 input[type="text"] {
@@ -38,6 +40,7 @@ input[type="text"] {
 
 #btn_agregar_base:hover {
     background-color: #0056b3;
+    transform: scale(0.98);
 }
 
 #btn_agregar_base{
@@ -53,6 +56,11 @@ input[type="text"] {
     background-color: transparent ;
     border: none;
     cursor: pointer;
+}
+
+.btn_eliminar:hover{
+    color: #3a5a8c;
+    transform: scale(0.95);
 }
 
 footer {
