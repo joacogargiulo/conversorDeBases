@@ -1,8 +1,7 @@
 let conversores = []
-let contenedorConversores = document.getElementById("contenedor_conversores")
-let contenedorConversoresOpcionales = document.getElementById("contenedor_conversores_opcionales")
+const contenedorConversores = document.getElementById("contenedor_conversores")
 
-let btnAgregarBase = document.getElementById("btn_agregar_base")
+const btnAgregarBase = document.getElementById("btn_agregar_base")
 
 let inputs = []
 let botonesEliminar = []
@@ -15,10 +14,10 @@ class Conversor {
     }
 }
 
-let conversorDec = new Conversor("input_decimal","10","Decimal")
-let conversorHex = new Conversor("input_hexadecimal","16","Hexadecimal")
-let conversorBin = new Conversor("input_binario","2","Binario")
-let conversorOct = new Conversor("input_octal","8","Octal")
+const conversorDec = new Conversor("input_10","10","Decimal")
+const conversorBin = new Conversor("input_2","2","Binario")
+const conversorOct = new Conversor("input_8","8","Octal")
+const conversorHex = new Conversor("input_16","16","Hexadecimal")
 
 conversores.push(conversorDec,conversorBin,conversorOct,conversorHex)
 
@@ -38,20 +37,9 @@ function mostrarConversor(conversor) {
     agregarListeners()
 }
 
-//Evita que se rompa el codigo cuando se vacia un input
-function revisar() {
-    inputs.forEach(conversor => {
-        let input = document.getElementById(conversor.id)
-        if (input.value == "") {
-            input.value = ""
-        }
-    })
-}
-
 function convertir(base, input) {
     const num = document.getElementById(input).value
     const numDec = parseInt(num, parseInt(base))
-
 
     inputs.forEach(conversor => {
         let input = document.getElementById(conversor.id)
@@ -70,10 +58,28 @@ btnAgregarBase.addEventListener("click", () => {
         icon: "info",
         title: "Nuevo conversor",
         text: "Ingrese una base entre 2 y 36", 
-        content: "input",
         buttons: true,
+        content: {
+            element: "input",
+            attributes:{
+            type: "number",
+            min: "2",
+            max: "36"
+            }
+        }
     })
     .then((base) => {
+        for(input of inputs){
+            if (input.name == base) {
+                swal({
+                    icon: "error",
+                    title: "Ese conversor ya existe",
+                    text: "Elija una base que no exista previamente",
+                    dangerMode: true
+                })
+                return
+            }
+        }
         if (base >= 2 && base <= 36) {
             let nuevoConversor = new Conversor("input_" + base, base, "Base " + base);
             if (base == 10) {
@@ -100,7 +106,6 @@ btnAgregarBase.addEventListener("click", () => {
 
 function agregarListeners() {
     contenedorConversores.addEventListener("input", (event) => {
-        revisar()
         const target = event.target
         convertir(target.name, target.id)
     })
