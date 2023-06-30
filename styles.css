@@ -13,13 +13,12 @@ h1 {
     margin-bottom: 20px;
 }
 
-#contenedor_conversores,
-#contenedor_conversores_opcionales {
+#contenedor_conversores{
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 10px;
     margin-bottom: 20px;
-    width: 40%
+    width: 65%
 }
 
 p {
