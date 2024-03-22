@@ -32,8 +32,8 @@ function mostrarConversor(conversor) {
         `
     contenedorConversores.innerHTML += agregandoConversores 
 
-    let inputNue = document.getElementById(conversor.id)
-    inputs.push(inputNue)        
+    let inputNuevo = document.getElementById(conversor.id)
+    inputs.push(inputNuevo)        
     agregarListeners()
 }
 
