@@ -21,10 +21,6 @@ h1 {
     width: 65%
 }
 
-p {
-    margin: 0;
-}
-
 label {
     font-weight: bold;
     width: 100%;
@@ -72,4 +68,8 @@ footer {
     text-align: center;
     font-size: 12px;
     color: #888;
+}
+
+label:hover {
+    cursor: move;
 }

@@ -5,18 +5,40 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="google-site-verification" content="LRdy08qGzgLfkVoh5qkgCMFKCdxBOn7f-YEfzrr15E0" />
+	<meta name="google-site-verification" content="LRdy08qGzgLfkVoh5qkgCMFKCdxBOn7f-YEfzrr15E0" />
+	<meta name="description" content="Esta es una herramienta que te permite convertir fácilmente números de cualquier base numérica a otra. Puedes elegír bases entre 2 y 36, y convertir diferentes bases simultaneamente.">
+	<meta name="keywords" content="conversor, convertidor, bases, numericas, decimal, binario, hexadecimal, octal">
 	<title>Conversor de Bases</title>
 	<link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7e/xKPDy8Yfx8/LM8PPy9vDy8vPx8/HK8PPyheru7iYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADi6O8J7/HxjvLz8f7y9PL/7Orf/9fPwP/X0MD/6evd//L18P/x8/L97/Lxib3GzwQAAAAAAAAAAAAAAADr8PYJ8fPzwfP08v/x9O7/zb+c/9TLCP/OxAf/n4YK/4R0BP+ztJD/7/Hs//P08v/v8vC2zNbeBQAAAAAAAAAA8PLxkvP08v/y9PH/yLuv/+PKK//z+Lr/8/bl/+vt4P/OzsH/fYQv/6+xlf/y9PL/8/Ty//Hy8YsAAAAA7O/xLvP08v/z9PL/8/Xx/5h3bP/vxIT/8vXx//P08v/z9PL/8fTx/9nvoP9heDD/7fPw//P08v/z9PH+6/DxKPDx8JXz9PH/8/Ty//P18P+IbWr/yYZw/+/s6f/z9PL/8/Ty//P18f/S5q3/e8TL/+rz8//z9PL/8/Ty//Hy8Yvy8/Hb8/Tx//P08f/y9PH/sqqn/4A5Tf++kqH/8e/r/93a0P+4vL3/isHl/7bp+f/y9fH/8/Ty//P08v/x8/HO8vTy/vL08v/y9PL/8/Tx/+/w6/+NgID/biJQ/4ZOh/+MgMT/lrzv/8Dq+v/s9PP/8/Ty//L08v/z9PL/8fPy+fH08v/z9PL/8/Ty//P08v/z9fH/xK+6/4pGn/+Lldf/nMPv/4iv6/+bwvT/7vTx//L08v/z9PL/8/Ty//Hz8vrx8/La8/Ty//P08v/z9PH/3dbW/35FuP+Sk+T/1uDv/+vv7/+Jl9//SZ/x/8Pn9f/x8/H/8/Ty//P08v/x8/HP8fLxlvP08v/z9PL/8vXw/76gzv+TQ9T/6OPr//Lz8f/y9PH/5ezu/y+Z8f+p5Pn/8fTy//P08f/z9PL/8PLwjOzv8C7z9PL/8/Ty//L18P/AjMP/kSTQ//L08f/y9PH/8vTy//H07/9LsfH/xO77//L18P/z9PL/8vTy/u3w8ikAAAAA8fLxlPP08f/z9PH/18PT/4ALwf/FrfT/7e3w/+rr7/+mve//cMn2/+T19v/y9PL/8/Tx//Dy8Y0AAAAAAAAAAOvy+Arw9PPB8vTy//P18P+8rc//YyPK/1gm2v85Uub/Vqr1/8zr9f/y9PH/8/Ty//Hz8r3a4egGAAAAAAAAAAAAAAAA4+/4Cu7y8ZHy8/H/8vTx/+Tn7v/Jzur/zNjx/+nx8f/w9PD/8vPy/u/x8IvX4egGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7vDyKfHy8Ivx8vHP7/Px+/Dy8fjv8vDN7vHwiOvu8CcAAAAAAAAAAAAAAAAAAAAA+B8AAOAHAADAAwAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAAgAEAAMADAADgBwAA+B8AAA==" rel="icon" type="image/x-icon" />
 	<link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/ac86990682.js" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<meta name="google-site-verification" content="LRdy08qGzgLfkVoh5qkgCMFKCdxBOn7f-YEfzrr15E0" />
-	<meta name="description" content="Esta es una herramienta que te permite convertir fácilmente números de cualquier base numérica a otra. Puedes elegír bases entre 2 y 36, y convertir diferentes bases simultaneamente.">
-	<meta name="keywords" content="conversor, convertidor, bases, numericas, decimal, binario, hexadecimal, octal">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.js" integrity="sha512-7uomMJLUlyzgg7Cu8C57a3XB/JX2fLV1mWES4FpvJm4QgC2WDsBDDeFfOQkGpCfZFjNLhBqsXavmRQGs8X1SBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 	<h1>Conversor de Bases</h1>
-		<div id="contenedor_conversores"></div>
+		<section id="contenedor_conversores">
+			<div id="input_10_container" class="conversor_container">
+				<label for="input_10">Decimal</label>
+				<button class="btn_eliminar fa-solid fa-trash-can" data-input-id="input_10" id="btn_eliminar_input_10" ></button>
+				<input type="text" id="input_10" name="10" min="0" placeholder= "0" />
+			</div>
+			<div id="input_2_container" class="conversor_container">
+				<label for="input_2">Binario</label>
+				<button class="btn_eliminar fa-solid fa-trash-can" data-input-id="input_2" id="btn_eliminar_input_2" ></button>
+				<input type="text" id="input_2" name="2" min="0" placeholder= "0" />
+			</div> 
+			<div id="input_8_container" class="conversor_container">
+				<label for="input_8">Octal</label>
+				<button class="btn_eliminar fa-solid fa-trash-can" data-input-id="input_8" id="btn_eliminar_input_8" ></button>
+				<input type="text" id="input_8" name="8" min="0" placeholder= "0" />
+			</div>
+			<div id="input_16_container" class="conversor_container">
+				<label for="input_16">Hexadecimal</label>
+				<button class="btn_eliminar fa-solid fa-trash-can" data-input-id="input_16" id="btn_eliminar_input_16" ></button>
+				<input type="text" id="input_16" name="16" min="0" placeholder= "0" />
+			</div>
+		</section>
 		<button id="btn_agregar_base">Agregar Base</button>
 	<footer>Hecho por Joaco Gargiulo</footer>
 	<script src="codigo.js"></script>
