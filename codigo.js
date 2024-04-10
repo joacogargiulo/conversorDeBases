@@ -58,10 +58,11 @@ btnAgregarBase.addEventListener("click", () => {
             }
         }
     })
-    .then((base) => {
+    .then((baseIngresada) => {
         let input
         for(input of inputs){
-            if (input.name == base) {
+            input = document.getElementById(input)
+            if (input.name == baseIngresada) {
                 swal({
                     icon: "error",
                     title: "Ese conversor ya existe",
@@ -72,20 +73,20 @@ btnAgregarBase.addEventListener("click", () => {
             }
         }
         
-        if (base >= 2 && base <= 36) {
-            let nuevoConversor = new Conversor("input_" + base, base, "Base " + base);
-            if (base == 10) {
+        if (baseIngresada >= 2 && baseIngresada <= 36) {
+            let nuevoConversor = new Conversor("input_" + baseIngresada, baseIngresada, "Base " + baseIngresada);
+            if (baseIngresada == 10) {
                 nuevoConversor.texto = "Decimal"
-            } else if (base == 16) {
+            } else if (baseIngresada == 16) {
                 nuevoConversor.texto = "Hexadecimal"
-            } else if (base == 8){
+            } else if (baseIngresada == 8){
                 nuevoConversor.texto = "Octal"
-            } else if (base == 2){
+            } else if (baseIngresada == 2){
                 nuevoConversor.texto = "Binario"
             }
             
             renderizarConversor(nuevoConversor)        
-        } else  if (base !== null) {
+        } else  if (baseIngresada !== null) {
             swal({
                 title: "Error",
                 text: "Ingrese una base valida",
