@@ -121,5 +121,6 @@ function eliminarInput(inputId) {
 let drag = document.querySelector("#contenedor_conversores")
 
 new Sortable(drag , {
-    animation: 500
+    animation: 500,
+    handle: "label"
 })
